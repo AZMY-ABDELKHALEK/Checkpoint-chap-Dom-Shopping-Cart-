@@ -3,17 +3,13 @@
         const deleteBtns = document.querySelectorAll('.delete-btn');
         const likeBtns = document.querySelectorAll('.like-btn');
         const totalElement = document.querySelector('.total');
-        const items = [
-            { name: 'Jogging', price: 40 },
-            { name: 'Fridge', price: 1200 },
-            { name: 'Gaming Chair', price: 300 }
-        ];
 
         function updateTotal() {
             let total = 0;
-            document.querySelectorAll('.item').forEach((item, index) => {
-                const quantity = parseInt(item.querySelector('span').innerText);
-                total += quantity * items[index].price;
+            document.querySelectorAll('.item').forEach((item) => {
+                const quantity = item.querySelector('.qty');
+                const price = item.querySelector('.price');
+                total += quantity.innerHTML * price.innerHTML;
             });
             totalElement.innerText = `Total: $${total}`;
         }
@@ -45,6 +41,13 @@
                 updateTotal();
             });
         });
+        // for (let btn of deleteBtns) {
+        //     btn.addEventListener('click', function () {
+        //         const item = this.closest('.item');
+        //         item.remove();
+        //         updateTotal();
+        //     });
+        // }
 
         likeBtns.forEach(btn => {
             btn.addEventListener('click', function () {
